@@ -1,0 +1,11 @@
+odoo_data/
+db_data/
+
+# Ignore environment file
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
