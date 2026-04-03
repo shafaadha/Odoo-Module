@@ -1,0 +1,95 @@
+<odoo>
+
+    <data>
+        <template id="tutor_javascript_backend" name="web.assets_backend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/student_management/static/src/js/widget_one.js" />
+            </xpath>
+        </template>
+    </data>
+
+
+    <!-- list view -->
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">student.tree</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="age" />
+                <field name="status" />
+                <field name="total_course" />
+                <field name="progress" widget="progressbar" />
+            </list>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.form</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm_status"
+                        type="object"
+                        string="Confirm"
+                        invisible="status == 'confirmed'" />
+                    <field name="status" widget="statusbar" />
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="age" />
+                        <field name="gender" />
+                    </group>
+
+                    <notebook>
+                        <page string="Enrollments">
+                            <field name="enrollment_ids">
+                                <list editable="bottom">
+                                    <field name="course_id" />
+                                    <field name="status" />
+                                    <field name="progress" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_root" name="Student Management" />
+
+    <record id="action_student_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">student_dashboard</field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_course" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">course.course</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_enrollment" model="ir.actions.act_window">
+        <field name="name">Enrollments</field>
+        <field name="res_model">course.enrollment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_dashboard" parent="menu_root" name="Dashboard" action="action_student_dashboard" />
+    <menuitem id="menu_student" parent="menu_root" name="Student" action="action_student" />
+    <menuitem id="menu_course" parent="menu_root" name="Course" action="action_course" />
+    <menuitem id="menu_enroll" parent="menu_root" name="Enrollment" action="action_enrollment" />
+
+
+</odoo>

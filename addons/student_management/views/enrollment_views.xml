@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_enrollment_tree" model="ir.ui.view">
+        <field name="name">enrollment.tree</field>
+        <field name="model">course.enrollment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="student_id"/>
+                <field name="course_id"/>
+                <field name="status"/>
+                <field name="progress" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_enrollment_form" model="ir.ui.view">
+        <field name="name">enrollment.form</field>
+        <field name="model">course.enrollment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start"
+                            type="object"
+                            string="Start"
+                            invisible = "status != 'draft'"/>
+
+                    <button name="action_finish"
+                            type="object"
+                            string="Finish"
+                            invisible = "status != 'ongoing'"/>
+
+                    <field name="status" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="course_id"/>
+                        <field name="progress" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

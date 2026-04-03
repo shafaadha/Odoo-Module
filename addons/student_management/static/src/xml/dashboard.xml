@@ -1,0 +1,31 @@
+<templates xml:space="preserve">
+    <t t-name="student_dashboard">
+        <div class="p-4">
+
+            <h1>📊 Student Dashboard</h1>
+
+            <div style="display:flex; gap:20px; margin:20px;">
+                <div class="card p-3">
+                    <h3>Total Student</h3>
+                    <h2><t t-esc="state.totalStudent"/></h2>
+                </div>
+
+                <div class="card p-3 rounded-lg">
+                    <h3>Total Enrollment</h3>
+                    <h2><t t-esc="state.totalEnrollment"/></h2>
+                </div>
+
+                <div class="card p-3 rounded-lg">
+                    <h3>Total Course</h3>
+                    <h2><t t-esc="state.totalCourse"/></h2>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div style="width:600px;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
+    </t>
+</templates>
